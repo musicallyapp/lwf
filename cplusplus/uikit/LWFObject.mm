@@ -64,9 +64,11 @@ using namespace LWF;
 
 - (void)dealloc
 {
-	shared_ptr<Data> data = lwf->data;
-	lwf->Destroy();
-	LWFResourceCache::shared()->unloadLWFData(data);
+    if (lwf) {
+        shared_ptr<Data> data = lwf->data;
+        lwf->Destroy();
+        LWFResourceCache::shared()->unloadLWFData(data);
+    }
 }
 
 - (NSString *)name
